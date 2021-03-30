@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>CADASTRO PACIENTE</title>
+
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+
+</head>
+<body>
+	<form action = "/consulta/salvar" method="POST">
+	
+		<div  th:each = "Recepcionista : ${recepcionista}">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      <li class="nav-item active">
+		      		<a class="nav-link" th:href="@{/recepcionista/voltar/{idr}(idr=${Recepcionista.id})}">Sair <span class="sr-only">(current)</span></a>	
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+			   <h5 class="card-title" >Dados do Recepcionista</h5>
+			    Identificacao
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="idr" name="idr" placeholder="idr" th:attr="value = ${Recepcionista.id}" readonly="true">
+				    </div>
+				</div>
+			    Nome
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="nome" name="nomer" placeholder="Nome" th:attr="value = ${Recepcionista.nome}" readonly="true">
+				    </div>
+				</div>
+			    Endereco
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="endereco" name="enderecor" placeholder="Endereco" th:attr="value = ${Recepcionista.endereco}" readonly="true">
+				    </div>
+				</div>
+			    Telefone
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="telefone" name="telefoner" placeholder="Telefone" th:attr="value = ${Recepcionista.telefone}" readonly="true">
+				    </div>
+				</div>
+			    <div  th:each = "data : ${dataR}">
+					Data de Nascimento
+				    <div class="form-group row">
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="dataNascimento" name="dataNascimento" placeholder="Data de Nascimento" th:attr="value = ${data}" readonly="true">
+					    </div>
+					</div>
+				</div>
+			    
+			    
+			</div>
+		</div>
+	
+	<br>	
+	
+	  <div class="form-group row">	  
+		<label for="inputLogin" class="col-sm-1 col-form-label">Id do paciente</label>
+	    <div class="col-sm-6">
+	      <input type="number" class="form-control" id="idPaciente" name="idPaciente" placeholder="Id do Paciente">
+	    </div>    
+	  </div>
+
+	  <div class="form-group row">	  
+		<label for="inputLogin" class="col-sm-1 col-form-label">Id do medico</label>
+	    <div class="col-sm-6">
+	      <input type="number" class="form-control" id="idMedico" name="idMedico" placeholder="Id do Medico">
+	    </div>    
+	  </div>
+	  
+
+	  <div class="form-group row">
+	    <label for="inputData" class="col-sm-1 col-form-label">Data da consulta</label>
+	    <div class="col-sm-6">
+	      <input type="text" class="form-control" id="data" name="dataC" placeholder="Data da consulta">
+	    </div>
+	  </div>
+ 	 
+ 	 <br>
+	
+	 <div class="col-md-4 text-center"> 
+   		 <button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Cadastrar</button> 
+	 </div>
+	 </div>
+	</form>
+	
+	<br>
+		<table class="table">
+		  <thead>
+		    <tr >
+		      <th scope="col">Id do Paciente</th>
+		      <th scope="col">Nome</th>
+		      <th scope="col">Status</th>
+		      <th scope="col">Endereco</th>
+		      <th scope="col">Telefone</th>
+		      <th scope="col">Tipo Sanguineo</th>
+		      <th scope="col">Observacoes</th>
+		      <th scope="col">Historico do paciente</th>
+		      <th scope="col">Data de Nascimento</th>
+		    </tr>
+		  </thead>
+		  
+		  <tbody>
+		    <tr th:each = "Paciente : ${listaPacientes}">
+		      <td th:text="${Paciente.id}"></td>
+		      <td th:text="${Paciente.nome}"></td>
+		      <td th:text="${Paciente.status}"></td>
+		      <td th:text="${Paciente.endereco}"></td>
+		      <td th:text="${Paciente.telefone}"></td>
+		      <td th:text="${Paciente.tipoSanguineo}"></td>
+		      <td th:text="${Paciente.Observacoes}"></td>
+		      <td th:text="${Paciente.historicoPaciente}"></td>
+		      <td th:text="${Paciente.date}"></td>
+		     </tr>
+		  </tbody>
+		</table>
+		<br>
+		<br>
+		
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Id do Medico</th>
+		      <th scope="col">Nome</th>
+		      <th scope="col">CRM</th>
+		      <th scope="col">Status</th>
+		      <th scope="col">Endereco</th>
+		      <th scope="col">Telefone</th>
+		      <th scope="col">Especialidade</th>
+		      <th scope="col">Data de Nascimento</th>
+		    </tr>
+		  </thead>
+		  
+		  <tbody>
+		    <tr  th:each = "Medico : ${listaMedicos}">
+		      <td th:text="${Medico.id}"></td>
+		      <td th:text="${Medico.nome}"></td>
+		      <td th:text="${Medico.crm}"></td>
+		      <td th:text="${Medico.status}"></td>
+		      <td th:text="${Medico.endereco}"></td>
+		      <td th:text="${Medico.telefone}"></td>
+		      <td th:text="${Medico.especialidade}"></td>
+		      <td th:text="${Medico.dataNascimento}"></td>
+		      </tr>
+		  </tbody>
+		</table>
+		
+
+	
+	 <script type="text/javascript">
+	 $("#dataC").mask("00/00/0000 00:00");
+		$("#data").mask("00/00/0000 00:00");
+		$("#telefone").mask("(00) 00000-0000");
+	 </script>
+
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

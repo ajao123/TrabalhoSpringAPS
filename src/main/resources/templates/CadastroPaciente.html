@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>CADASTRO PACIENTE</title>
+
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+
+</head>
+<body>
+	
+	<form action = "/paciente/salvar" method="POST">
+	
+	  <div  th:each = "Recepcionista : ${recepcionista}">
+	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		      <li class="nav-item active">
+		      		<a class="nav-link" th:href="@{/recepcionista/voltar/{idr}(idr=${Recepcionista.id})}">Sair <span class="sr-only">(current)</span></a>	
+		      </li>
+		    </ul>
+		  </div>
+		</nav>
+				<div class="card" style="width: 18rem;">
+				<div class="card-body">
+			   <h5 class="card-title" >Dados do Recepcionista</h5>
+			    Identificacao
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="idr" name="idr" placeholder="idr" th:attr="value = ${Recepcionista.id}" readonly="true">
+				    </div>
+				</div>
+			    Nome
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="nome" name="namer" placeholder="Nome" th:attr="value = ${Recepcionista.nome}" readonly="true">
+				    </div>
+				</div>
+			    Endereco
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="endereco" name="enderecor" placeholder="Endereco" th:attr="value = ${Recepcionista.endereco}" readonly="true">
+				    </div>
+				</div>
+			    Telefone
+			    <div class="form-group row">
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="telefone" name="telefoner" placeholder="Telefone" th:attr="value = ${Recepcionista.telefone}" readonly="true">
+				    </div>
+				</div>
+			   <div  th:each = "data : ${dataR}">
+					Data de Nascimento
+				    <div class="form-group row">
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="dataNascimento" name="dataNascimentor" placeholder="Data de Nascimento" th:attr="value = ${data}" readonly="true">
+					    </div>
+					</div>
+				</div>
+			    
+			    
+			</div>
+		</div>
+	
+	<br>
+
+		  <div class="form-group row">	  
+			<label for="inputLogin" class="col-sm-1 col-form-label">Login</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="login" name="login" placeholder="Login">
+		    </div>    
+		  </div>
+	
+		  <div class="form-group row">
+		    <label for="inputPassword" class="col-sm-1 col-form-label">Senha</label>
+		    <div class="col-sm-6">
+		      <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label for="inputNome" class="col-sm-1 col-form-label">Nome</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label for="inputTelefone" class="col-sm-1 col-form-label">Telefone</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="tel" name="telefone" placeholder="Telefone">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputData" class="col-sm-1 col-form-label">Data de Nascimento</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="date" name="date" placeholder="Data de Nascimento">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEndereco" class="col-sm-1 col-form-label">Endereco</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Endereco">
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+			   <label for="inputTelefone" class="col-sm-2 col-form-label">Tipo Sanguineo</label>
+			    
+				<div class="col-sm-1">
+				    <select multiple class="form-control" id="FormControlTipoSanguineo"  name="tipoSanguineo">
+					     <option value = "A_POSITIVO">A+</option>
+					     <option value = "A_NEGATIVO">A-</option>
+					     <option value = "B_POSITIVO">B+</option>
+					     <option value = "B_NEGATIVO">B-</option>
+					  	 <option value = "AB_POSITIVO">AB+</option>
+					     <option value = "AB_NEGATIVO">AB-</option>
+					     <option value = "O_POSITIVO">O+</option>
+					     <option value = "O_NEGATIVO">O-</option>
+					 </select>
+			    </div>    
+			    
+	  			</div>
+		 <div class="form-group row">
+			
+		    <label for="inputData" class="col-sm-1 col-form-label">Observacao</label>
+		     <div class="col-sm-6"> 
+		    	<textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
+		    </div>
+	 	 </div>
+	 	 
+	 	
+	 	 
+	 	 
+ 	 <br>
+ 	 
+		  <div class="col-md-4 text-center"> 
+	   		 <button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Cadastrar</button> 
+		  </div>
+	  </div>
+
+	</form>
+
+	
+	 <script type="text/javascript">
+	    $("#date").mask("00/00/0000");
+	    $("#tel").mask("(00) 00000-0000");
+	 </script>
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

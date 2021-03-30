@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title> PAGINA ADMINISTRADOR </title>
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	      		<a class="nav-link" th:href="@{/sistema/paginainicial}">Sair <span class="sr-only">(current)</span></a>	
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	<form action = "/recepcionista/cadastro" method="POST">
+	 <div  th:each = "Administrador : ${administrador}">
+		Identificacao
+	    <div class="form-group row">
+		    <div class="col-sm-1">
+		      <input type="text" class="form-control" id="ida" name="ida" placeholder="ida" th:attr="value = ${Administrador.id}" readonly="true">
+		    </div>
+		</div>
+		<div class="col-md-4 text-center"> 
+   		 	<button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Cadastrar Recepcionista</button> 
+	  	</div>
+	  	
+	  	<div class="container mb-3 mt-3">
+	<table class="table table-striped table-bordered dtBasicExample" style="width: 100%">
+  <thead>
+    <tr>
+       <th scope="col">Id do Recepcionista</th>
+       <th scope="col">Nome</th>
+       <th scope="col">Endereco</th>
+       <th scope="col">Telefone</th>
+       <th scope="col">Data de Nascimento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each = "Recepcionista : ${listaRecepcionistas}">
+      <td th:text="${Recepcionista.id}"></td>
+      <td th:text="${Recepcionista.nome}"></td>
+      <td th:text="${Recepcionista.endereco}"></td>
+      <td th:text="${Recepcionista.telefone}"></td>
+      <td th:text="${Recepcionista.dataNascimento}"></td>
+      <td><a class="btn btn-danger" th:href="@{/recepcionista/excluir/{ids}(ids=${Recepcionista.id+'-'+Administrador.id})}">Excluir</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="col">Id do Recepcionista</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Endereco</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Data de Nascimento</th>
+    </tr>
+  </tfoot>
+</table>
+</div>
+	  	
+	  	
+	</div>
+	 
+	  
+	</form>	
+	<br>
+	<br>
+	
+
+	
+
+ <script type="text/javascript">
+   $("#dataNasc").mask("00/00/0000");
+   $("#telefone").mask("(00) 00000-0000");
+ </script>
+</body>
+</html>

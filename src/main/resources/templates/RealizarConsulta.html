@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>PAGINA MEDICO</title>
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+
+
+<div  th:each = "Consulta : ${consulta}">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	      		<a class="nav-link" th:href="@{/consulta/cancelarConsulta/{idc}(idc=${Consulta.id})}">Cancelar Consulta <span class="sr-only">(current)</span></a>	
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	<form action = "/medico/adicionarObs" method="POST">
+	      <div class="form-group row">
+	      	  <label for="inputData" class="col-sm-1 col-form-label">Id consulta</label>
+		      <div class="col-sm-1">
+		        <input type="text" class="form-control" id="idc" name="idc" placeholder="idc" th:attr="value = ${Consulta.id}" readonly="true">
+		      </div>
+		  </div>	
+			
+		  <div class="form-group row">
+		    <label for="inputData" class="col-sm-1 col-form-label">Observacao</label>
+		    <div class="col-sm-6">
+		      <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
+		    </div>
+		  </div>
+	 	<div class="col-md-4 text-center"> 
+   		  <button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Adicionar Observacao</button> 
+	 	</div>
+	 	
+	 	
+	</form>
+
+	<br>
+	<h3>Lista de Observacoes</h3>
+	<br>
+	<div class="col-md-4 text-center"> 
+	    <table th:object="${Consulta.observacoes}" id="userTable" border="3">
+	      <thead>
+		    <tr >
+		      <th scope="col">Observacao</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="observacao :${Consulta.observacoes}">
+		        <td  th:text="${observacao}"></td>
+		        <td><a class="btn btn-danger" th:href="@{/medico/removerObs/{obs}(obs=${observacao+'_'+Consulta.id})}">Excluir</a></td>
+		    </tr>
+		   </tbody>
+		</table>
+    </div>
+    <br>
+    <br>
+  
+  
+  <form action = "/medico/adicionarObsPaciente" method="POST">
+	
+	  <div class="form-group row">
+      	  <label for="inputData" class="col-sm-1 col-form-label">Id consulta</label>
+	      <div class="col-sm-1">
+	        <input type="text" class="form-control" id="idc" name="idc" placeholder="idc" th:attr="value = ${Consulta.id}" readonly="true">
+	      </div>
+	  </div>	
+	  <br>
+	  <br>
+      <div class="form-group row">
+      	  <label for="inputData" class="col-sm-1 col-form-label">Id do Paciente</label>
+	      <div class="col-sm-1">
+	        <input type="text" class="form-control" id="idp" name="idp" placeholder="idp" th:attr="value = ${Consulta.paciente.id}" readonly="true">
+	      </div>
+	      <br>
+	      
+	  </div>	
+	
+	<div class="form-group row">
+		<label for="inputData" class="col-sm-1 col-form-label">Nome do Paciente</label>
+	      <div class="col-sm-6">
+	        <input type="text" class="form-control" id="nome" name="nome" placeholder="nome" th:attr="value = ${Consulta.paciente.nome}" readonly="true">
+	      </div>
+	</div>      
+	<div class="form-group row">
+	    <label for="inputData" class="col-sm-1 col-form-label">Observacao</label>
+	    <div class="col-sm-6">
+	      <textarea class="form-control" id="observacaop" name="observacaop" rows="3"></textarea>
+	    </div>
+	 </div>
+
+		<div class="col-md-4 text-center"> 
+   		  <button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Adicionar Observacao</button> 
+	 	</div>
+	 	
+	 	
+	</form>
+ 
+ 
+ 	<br>
+ 	<br>
+ 	<h3>Lista de Observacoes do Paciente</h3>
+ 	
+	<br>
+	<br>
+	<div class="col-md-4 text-center"> 
+	    <table th:object="${Consulta.paciente.observacoes}" id="userTable" border="3">
+	      <thead>
+		    <tr >
+		      <th scope="col">Observacao</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="observacaop :${Consulta.Paciente.observacoes}">
+		        <td  th:text="${observacaop}"></td>
+		        <td><a class="btn btn-danger" th:href="@{/medico/removerObsPaciente/{obs}(obs=${observacaop+'_'+Consulta.id})}">Excluir</a></td>
+		    </tr>
+		   </tbody>
+		</table>
+    </div>
+    <br>
+    <br>
+		
+	
+      <form action = "/medico/adicionarIHPaciente" method="POST">
+	
+		  <div class="form-group row">
+	      	  <label for="inputData" class="col-sm-1 col-form-label">Id consulta</label>
+		      <div class="col-sm-1">
+		        <input type="text" class="form-control" id="idc" name="idc" placeholder="idc" th:attr="value = ${Consulta.id}" readonly="true">
+		      </div>
+		  </div>	
+		  <br>
+		  <br>
+	    
+		<div class="form-group row">
+		    <label for="inputData" class="col-sm-1 col-form-label">Item </label>
+		    <div class="col-sm-6">
+		      <textarea class="form-control" id="ihPaciente" name="ihPaciente" rows="3"></textarea>
+		    </div>
+		 </div>
+	
+			<div class="col-md-4 text-center"> 
+	   		  <button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Adicionar Item</button> 
+		 	</div>
+		 	 	
+	</form>
+ 		<br>
+	    <br>
+	    
+	 	<h3>Historico do Paciente</h3>
+	 	
+	 	<br>
+		<br>
+		<div class="col-md-4 text-center"> 
+		    <table th:object="${Consulta.paciente.historicoPaciente}" id="userTable" border="3">
+		      <thead>
+			    <tr >
+			      <th scope="col">Historico</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="itemHistorico :${Consulta.Paciente.historicoPaciente}">
+			        <td  th:text="${itemHistorico}"></td>
+			        <td><a class="btn btn-danger" th:href="@{/medico/removerIHPaciente/{obs}(obs=${itemHistorico+'_'+Consulta.id})}">Excluir</a></td>
+			    </tr>
+			   </tbody>
+			</table>
+	    </div>
+	    <br>
+	    <br>
+ 	
+ 		<a class="btn btn-primary" th:href="@{/medico/adicionarDoenca/{idConsulta}(idConsulta=${Consulta.id})}">Adicionar Doenca</a>
+ 		<br>
+ 		<h3>Lista de Doencas do Paciente</h3>
+ 	
+		<br>
+		<table class="table">
+		  <thead>
+		    <tr >
+		      <th scope="col">Id da Doenca</th>
+		      <th scope="col">Nome</th>
+		      <th scope="col">Estagio</th>
+		      <th scope="col">Sintomas</th>
+		      <th scope="col">Observacoes</th>
+		    </tr>
+		  </thead>
+		  
+		  <tbody>
+		    <tr th:each = "Doenca : ${listaDoencas}">
+		      <td th:text="${Doenca.id}"></td>
+		      <td th:text="${Doenca.nome}"></td>
+		      <td th:text="${Doenca.estagio}"></td>
+		      <td th:text="${Doenca.sintomas}"></td>
+		      <td th:text="${Doenca.observacoes}"></td>
+		      <td><a class="btn btn-primary" th:href="@{/doenca/adicionarSintoma/{ids}(ids=${Consulta.id+'_'+Doenca.id})}">Adicionar Sintoma</a></td>
+	      	  <td><a class="btn btn-primary" th:href="@{/doenca/adicionarObservacao/{ids}(ids=${Consulta.id+'_'+Doenca.id})}">Adicionar Observacao</a></td>		  	      
+		    </tr>
+		  </tbody>
+		</table>
+		<br>
+		<a class="btn btn-primary" th:href="@{/consulta/finalizar/{id}(id=${Consulta.id})}">Finalizar Consulta</a>
+</div>	
+
+
+</body>
+</html>

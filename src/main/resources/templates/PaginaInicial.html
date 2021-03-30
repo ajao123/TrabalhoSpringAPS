@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Pagina Inicial</title>
+	<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<br>
+<form action = "/sistema/login" method="POST">
+
+	<div class="form-group row">
+		<label for="inputLogin" class="col-sm-1 col-form-label">Login</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" id="login" name="login" placeholder="Login" autocomplete="off">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="inputPassword" class="col-sm-1 col-form-label">Senha</label>
+		<div class="col-sm-6">
+			<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" autocomplete="off">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputTelefone" class="col-sm-2 col-form-label">Tipos de Usuario</label>
+
+		<div class="col-sm-2">
+			<select multiple class="form-control" id="FormControlTipoUsuario"  name="usuario">
+				<option value = "administador">Administrador</option>
+				<option value = "recepcionista">Recepcionista</option>
+				<option value = "medico">Medico</option>
+				<option value = "paciente">Paciente</option>
+			</select>
+		</div>
+
+	</div>
+
+	<div class="col-md-4 text-center">
+		<button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Login</button>
+	</div>
+</form>
+
+</body>
+</html>

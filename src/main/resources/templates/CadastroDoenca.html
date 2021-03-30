@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>CADASTRO DOENCA</title>
+
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mask.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+
+</head>
+<body>
+	<div  th:each = "Consulta : ${consulta}">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	      	 <a class="nav-link" th:href="@{/consulta/voltar/{id}(id=${Consulta.id})}">Cancelar<span class="sr-only">(current)</span></a>	
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+		
+ 		<form action = "/doenca/salvar" method="POST">
+		  <div class="form-group row">
+	      	  <label for="inputData" class="col-sm-1 col-form-label">Id consulta</label>
+		      <div class="col-sm-1">
+		        <input type="text" class="form-control" id="idc" name="idc" placeholder="idc" th:attr="value = ${Consulta.id}" readonly="true">
+		      </div>
+		  </div>
+		   <div class="form-group row">
+		    <label for="inputEstagio" class="col-sm-1 col-form-label">Id do Paciente:</label>
+		    <div class="col-sm-1">
+		      <input type="text" class="form-control" id="idPaciente" name="idPaciente" placeholder="Id do Paciente" th:attr="value = ${Consulta.paciente.id}" readonly="true">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+	      	  <label for="inputData" class="col-sm-1 col-form-label">Nome do Paciente</label>
+		      <div class="col-sm-6">
+		        <input type="text" class="form-control" id="nomep" name="nomep" placeholder="Nome do Paciente" th:attr="value = ${Consulta.paciente.nome}" readonly="true">
+		      </div>
+		  </div>	
+		  
+		  <div class="form-group row">
+		    <label for="inputNome" class="col-sm-1 col-form-label">Nome</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="nomeDoenca" name="nomeDoenca" placeholder="Nome">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEstagio" class="col-sm-1 col-form-label">Estagio:</label>
+		    <div class="col-sm-6">
+		      <input type="text" class="form-control" id="estagio" name="estagio" placeholder="Estagio">
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-4 text-center"> 
+	   		 <button id="singlebutton" name="singlebutton" class="btn btn-primary" type = "submit">Adicionar Doenca</button> 
+		  </div>
+		  
+		</form>
+	</div>	
+	
+	
+	
+
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
